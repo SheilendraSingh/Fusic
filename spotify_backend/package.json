@@ -1,0 +1,11 @@
+{
+  "name": "spotify_backend",
+  "version": "1.0.0",
+  "description": "\"This will contain the backend code of fusic.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sheilendra Singh",
+  "license": "ISC"
+}
