@@ -8,9 +8,13 @@ const JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
 const User = require("./models/User");
+const authRoutes = require("./routes/auth");
+const songRoutes = require("./routes/song");
 const app = express(); // kyuki upr vala variable as a function use ho rha h.
 require("dotenv").config();
 const port = 8000; // will be used as a port number.
+
+app.use(express.json()); // req.bosy ko json m convert krega.
 
 ///connect mongodb to our node app.
 //mongoose.connect 2 arguments : 1. Which db to connect (db url), 2. Connection option
@@ -64,6 +68,9 @@ app.get("/", (req, res) => {
   //res contain all the data for response.
   res.send("Hello World");
 });
+
+app.use("/auth", authRoutes);
+app.use("/song", songRoutes);
 
 //Now we want to tell express that out server will run on localhost:8000
 app.listen(port, () => {
