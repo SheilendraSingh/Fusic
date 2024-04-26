@@ -22,6 +22,7 @@ const User = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   username: {
     type: String,
@@ -32,7 +33,7 @@ const User = new mongoose.Schema({
     type: String,
     default: "",
   },
-  likedPlayelists: {
+  likedPlaylists: {
     //We will change thgis to array later.
     type: String,
     default: "",

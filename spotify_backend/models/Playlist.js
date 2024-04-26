@@ -28,19 +28,15 @@ const Playlist = new mongoose.Schema({
   //Playlsit mein song konse hai.
   //Playlist main collabrators kon hai.
 
-  Songs: [
-    {
-      types: mongoose.Types.ObjectId,
-      ref: "song",
-    },
-  ],
+  songs: {
+    type: mongoose.Types.ObjectId,
+    ref: "song",
+  },
 
-  collabrator: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "user",
-    },
-  ],
+  collabrator: {
+    type: mongoose.Types.ObjectId,
+    ref: "user",
+  },
 });
 
 // Step 3 ::
