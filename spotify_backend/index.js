@@ -13,8 +13,9 @@ const songRoutes = require("./routes/song");
 const playlistRoutes = require("./routes/playlist");
 const app = express(); // kyuki upr vala variable as a function use ho rha h.
 require("dotenv").config();
+const cors = require("cors");
 const port = 8000; // will be used as a port number.
-
+app.use(cors());
 app.use(express.json()); // req.bosy ko json m convert krega.
 
 ///connect mongodb to our node app.
