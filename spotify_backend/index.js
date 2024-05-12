@@ -23,7 +23,7 @@ app.use(express.json()); // req.bosy ko json m convert krega.
 mongoose
   .connect(
     "mongodb+srv://admin21:" +
-      process.env.MONGO_PASSWORD +
+      "b6JPFVP5dihygePP" +
       "@cluster0.4b726vx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     {
       useNewUrlParser: true,
