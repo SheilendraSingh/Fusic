@@ -88,11 +88,11 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
       setIsPaused(true);
     }
   };
-  const [cookies, removeCookie] = useCookies(["token"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const navigate = useNavigate();
 
   const logout = async () => {
-    removeCookie("token", { path: "/" });
+    removeCookie("token", "");
     navigate("/login");
   };
 

@@ -16,7 +16,7 @@ const LoginComponent = () => {
     const data = { email, password };
     const response = await makeUnauthenticatedPOSTRequest("/auth/login", data);
     if (response && !response.err) {
-      const token = response.token;
+      const token = response.user.token;
       const date = new Date();
       date.setDate(date.getDate() + 7);
       setCookie("token", token, { path: "/", expires: date });
@@ -70,4 +70,3 @@ const LoginComponent = () => {
 };
 
 export default LoginComponent;
-export { cookies, setCookie, removeCookie };

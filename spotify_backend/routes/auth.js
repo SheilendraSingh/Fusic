@@ -12,7 +12,7 @@ router.post("/register", async (req, res) => {
   // /register as a post request call hone pr hi yha ka code chlega
   //req. bosy {email, password, firstName, LastName, UserName}
   try {
-    const { email, Password, FirstName, LastName, username } = req.body;
+    const { email, password, firstName, lastName, userName } = req.body;
 
     // check the user with the email already exist? If yes, we throe an err.
 
@@ -21,13 +21,13 @@ router.post("/register", async (req, res) => {
     // Create a new User
     // for seurity we gonna hash our password
 
-    const hashedPassword = bcrypt.hash(Password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUserData = {
       email,
-      Password: hashedPassword,
-      FirstName,
-      LastName,
-      username,
+      password: hashedPassword,
+      firstName,
+      lastName,
+      userName,
     };
     const newUser = await User.create(newUserData);
 
@@ -37,7 +37,7 @@ router.post("/register", async (req, res) => {
 
     //return the result to user
     const userToReturn = { ...newUser.toJSON(), token };
-    delete userToReturn.Password;
+    delete userToReturn.password;
     return res.status(200).json({ success: true, user: userToReturn });
   } catch (err) {
     if (err instanceof mongoose.mongo.MongoError) {
@@ -75,7 +75,7 @@ router.post("/login", async (req, res) => {
 
   const token = await getToken(user.email, user);
   const userToReturn = { ...user.toJSON(), token };
-  delete userToReturn.Password;
+  delete userToReturn.password;
   return res.status(200).json({ success: true, user: userToReturn });
 });
 
