@@ -8,6 +8,10 @@ import SongContext from "../context/SongContext";
 import CreateToPlaylistModal from "../models/CreateToPLaylistModal";
 import AddToPlaylistModal from "../models/AddToPlaylistModal";
 import { makeAuthenticatedPOSTRequest } from "../utils/serverHelper";
+import { useCookies } from "react-cookie";
+import { Link, useNavigate } from "react-router-dom";
+import { makeUnauthenticatedPOSTRequest } from "../utils/serverHelper";
+import { Redirect } from "react-router-dom";
 
 const LoggedInContainer = ({ children, curActiveScreen }) => {
   const [createPlaylistModalOpen, setCreatePlaylistModalOpen] = useState(false);
@@ -83,6 +87,13 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
       pauseSound();
       setIsPaused(true);
     }
+  };
+  const [cookies, removeCookie] = useCookies(["token"]);
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    removeCookie("token", { path: "/" });
+    navigate("/login");
   };
 
   return (
@@ -169,7 +180,13 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
               </div>
               <div className="w-1/3 flex justify-around h-full items-center">
                 <TextWithHover displayText={"Upload Song"} />
-                <div className="bg-white w-10 h-10 flex items-center justify-center rounded-full font-semibold cursor-pointer">
+                <div
+                  className="bg-white w-10 h-10 flex items-center justify-center rounded-full font-semibold cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout();
+                  }}
+                >
                   AC
                 </div>
               </div>

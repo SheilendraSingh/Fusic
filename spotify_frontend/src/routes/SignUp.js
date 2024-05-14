@@ -29,10 +29,10 @@ const SignUpPage = () => {
     if (response && !response.err) {
       const token = response.token;
       const date = new Date();
-      date.setDate(date.getDate() + 30);
+      date.setDate(date.getDate() + 7);
       setCookie("token", token, { path: "/", expires: date });
       alert("Success");
-      navigate("/home");
+      navigate("/login");
     } else {
       alert("Failure");
     }

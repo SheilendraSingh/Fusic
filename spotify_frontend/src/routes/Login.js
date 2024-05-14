@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie";
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const navigate = useNavigate();
 
   const login = async () => {
@@ -18,7 +18,7 @@ const LoginComponent = () => {
     if (response && !response.err) {
       const token = response.token;
       const date = new Date();
-      date.setDate(date.getDate() + 30);
+      date.setDate(date.getDate() + 7);
       setCookie("token", token, { path: "/", expires: date });
       alert("Success");
       navigate("/home");
@@ -70,3 +70,4 @@ const LoginComponent = () => {
 };
 
 export default LoginComponent;
+export { cookies, setCookie, removeCookie };
