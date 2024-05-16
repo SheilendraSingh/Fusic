@@ -92,7 +92,7 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
   const navigate = useNavigate();
 
   const logout = async () => {
-    removeCookie("token", "");
+    removeCookie("token");
     navigate("/login");
   };
 
