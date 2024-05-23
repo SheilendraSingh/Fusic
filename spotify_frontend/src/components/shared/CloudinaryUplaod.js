@@ -1,12 +1,12 @@
 import { openUploadWidget } from "../../utils/CloudinaryServices";
-import { backendUrl } from "../../utils/config";
+import { backendUrl, cloudinary_uplaod_preset } from "../../../config";
 
 const CloudinaryUpload = ({ setUrl, setName }) => {
   const uploadImageWidget = () => {
     let myUploadWidget = openUploadWidget(
       {
-        cloudName: "dlmaf2wqn",
-        uploadPreset: backendUrl,
+        cloudName: process.env.CLOUD_NAME,
+        uploadPreset: cloudinary_uplaod_preset,
         sources: ["local"],
       },
       function (error, result) {
